@@ -7,3 +7,15 @@
 #   for循环
 # 地址为： https://careers.tencent.com/tencentcareer/api/post/Query?timestamp=1585450579819&countryId=&cityId=&bgIds=&productId=&categoryId=&parentCategoryId=&attrId=&keyword=&pageIndex=1&pageSize=10&language=zh-cn&area=cn
 
+import requests
+from bs4 import BeautifulSoup as bs
+
+url = 'https://careers.tencent.com/tencentcareer/api/post/Query?timestamp=1585450579819&countryId=&cityId=&bgIds=&productId=&categoryId=&parentCategoryId=&attrId=&keyword=&pageIndex=1&pageSize=10&language=zh-cn&area=cn'
+
+res = requests.get(url)
+res_json = res.json()
+
+post_list = res_json['Data']['Posts']
+
+for post in post_list:
+    print(post['RecruitPostName'])
